@@ -1,0 +1,180 @@
+var _user$project$Main$drawDiceBorder = A2(
+	_elm_lang$svg$Svg$rect,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$svg$Svg_Attributes$x('0'),
+			_elm_lang$svg$Svg_Attributes$y('0'),
+			_elm_lang$svg$Svg_Attributes$width('100'),
+			_elm_lang$svg$Svg_Attributes$height('100'),
+			_elm_lang$svg$Svg_Attributes$rx('15'),
+			_elm_lang$svg$Svg_Attributes$ry('15'),
+			_elm_lang$svg$Svg_Attributes$fill('lightgray')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[]));
+var _user$project$Main$drawCircle = function (_p0) {
+	var _p1 = _p0;
+	return A2(
+		_elm_lang$svg$Svg$circle,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$svg$Svg_Attributes$cx(
+				_elm_lang$core$Basics$toString(_p1._0)),
+				_elm_lang$svg$Svg_Attributes$cy(
+				_elm_lang$core$Basics$toString(_p1._1)),
+				_elm_lang$svg$Svg_Attributes$r('8')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _user$project$Main$drawCircles = function (coords) {
+	return A2(_elm_lang$core$List$map, _user$project$Main$drawCircle, coords);
+};
+var _user$project$Main$drawSingleDice = function (coords) {
+	return A2(
+		_elm_lang$svg$Svg$svg,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$svg$Svg_Attributes$width('100'),
+				_elm_lang$svg$Svg_Attributes$height('100'),
+				_elm_lang$svg$Svg_Attributes$viewBox('0 0 100 100')
+			]),
+		A2(
+			_elm_lang$core$List$append,
+			_elm_lang$core$Native_List.fromArray(
+				[_user$project$Main$drawDiceBorder]),
+			_user$project$Main$drawCircles(coords)));
+};
+var _user$project$Main$draw1 = _user$project$Main$drawSingleDice(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 50, _1: 50}
+		]));
+var _user$project$Main$draw2 = _user$project$Main$drawSingleDice(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 80, _1: 20},
+			{ctor: '_Tuple2', _0: 20, _1: 80}
+		]));
+var _user$project$Main$draw3 = _user$project$Main$drawSingleDice(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 50, _1: 50},
+			{ctor: '_Tuple2', _0: 20, _1: 80},
+			{ctor: '_Tuple2', _0: 80, _1: 20}
+		]));
+var _user$project$Main$draw4 = _user$project$Main$drawSingleDice(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 80, _1: 20},
+			{ctor: '_Tuple2', _0: 20, _1: 80},
+			{ctor: '_Tuple2', _0: 80, _1: 80},
+			{ctor: '_Tuple2', _0: 20, _1: 20}
+		]));
+var _user$project$Main$draw5 = _user$project$Main$drawSingleDice(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 80, _1: 20},
+			{ctor: '_Tuple2', _0: 20, _1: 80},
+			{ctor: '_Tuple2', _0: 80, _1: 80},
+			{ctor: '_Tuple2', _0: 20, _1: 20},
+			{ctor: '_Tuple2', _0: 50, _1: 50}
+		]));
+var _user$project$Main$draw6 = _user$project$Main$drawSingleDice(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 80, _1: 20},
+			{ctor: '_Tuple2', _0: 80, _1: 50},
+			{ctor: '_Tuple2', _0: 80, _1: 80},
+			{ctor: '_Tuple2', _0: 20, _1: 20},
+			{ctor: '_Tuple2', _0: 20, _1: 50},
+			{ctor: '_Tuple2', _0: 20, _1: 80}
+		]));
+var _user$project$Main$drawDice = function (num) {
+	var _p2 = num;
+	switch (_p2) {
+		case 1:
+			return _user$project$Main$draw1;
+		case 2:
+			return _user$project$Main$draw2;
+		case 3:
+			return _user$project$Main$draw3;
+		case 4:
+			return _user$project$Main$draw4;
+		case 5:
+			return _user$project$Main$draw5;
+		case 6:
+			return _user$project$Main$draw6;
+		default:
+			return A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('error')
+					]));
+	}
+};
+var _user$project$Main$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {dieFace1: a, dieFace2: b};
+	});
+var _user$project$Main$init = {
+	ctor: '_Tuple2',
+	_0: A2(_user$project$Main$Model, 1, 1),
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$Main$NewFaces = function (a) {
+	return {ctor: 'NewFaces', _0: a};
+};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p3 = msg;
+		if (_p3.ctor === 'Roll') {
+			var generator = A2(
+				_elm_lang$core$Random$pair,
+				A2(_elm_lang$core$Random$int, 1, 6),
+				A2(_elm_lang$core$Random$int, 1, 6));
+			return {
+				ctor: '_Tuple2',
+				_0: model,
+				_1: A2(_elm_lang$core$Random$generate, _user$project$Main$NewFaces, generator)
+			};
+		} else {
+			return {
+				ctor: '_Tuple2',
+				_0: A2(_user$project$Main$Model, _p3._0._0, _p3._0._1),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		}
+	});
+var _user$project$Main$Roll = {ctor: 'Roll'};
+var _user$project$Main$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$drawDice(model.dieFace1),
+				_user$project$Main$drawDice(model.dieFace2),
+				A2(
+				_elm_lang$html$Html$button,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Events$onClick(_user$project$Main$Roll)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Roll')
+					]))
+			]));
+};
+var _user$project$Main$main = {
+	main: _elm_lang$html$Html_App$program(
+		{init: _user$project$Main$init, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions, view: _user$project$Main$view})
+};
